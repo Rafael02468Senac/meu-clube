@@ -1,13 +1,13 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;  /* padding não aumenta o tamanho total */
+    box-sizing: border-box;  /* Padding não aumenta o tamanho total */
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     color: #172a45;
-    line-height: 1.6; /* espaçamento entre linhas */
+    line-height: 1.6; /* Espaçamento entre linhas */
 }
 
 /* ============ CABEÇALHO ============ */
@@ -21,6 +21,7 @@ header {
     color: #172a45;
     padding: 24px;
 }
+
 #hero-image {
     width: 100%;
     height: auto;
@@ -32,7 +33,6 @@ header {
 
 /* Links da navegação */
 nav {
-
     display: flex;
     justify-content: space-evenly;
     gap: 24px; 
@@ -41,12 +41,12 @@ nav {
 
 nav a {
     color: #172a45;
-    text-decoration: none;   /* remove o sublinhado */
+    text-decoration: none;   /* Remove o sublinhado */
     font-weight: bold;
 }
 
 nav a:hover {
-    color: #ff8904;          /* muda para laranja ao passar o mouse */
+    color: #ff8904;          /* Muda para laranja ao passar o mouse */
 }
 
 main {
@@ -65,20 +65,20 @@ main {
 
 #categorias {
     display: flex;
-    flex-wrap: wrap;        /* permite que os artigos quebrem para a próxima linha */
-    gap: 20px;              /* espaço entre os artigos */
-    justify-content: center; /* centraliza os artigos horizontalmente */
+    flex-wrap: wrap;        /* Permite que os artigos quebrem para a próxima linha */
+    gap: 20px;              /* Espaço entre os artigos */
+    justify-content: center; /* Centraliza os artigos horizontalmente */
     padding: 20px;
 }
 
 #categorias article {
-    flex: 1;              /* divide o espaço igualmente */
-    min-width: 250px;     /* não encolhe além disso */
-    max-width: 320px; /* não cresce além disso */
+    flex: 1;              /* Divide o espaço igualmente */
+    min-width: 250px;     /* Não encolhe além disso */
+    max-width: 320px; /* Não cresce além disso */
     background-color: white;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3); /* sombra sutil */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3); /* Sombra sutil */
     text-align: center;
     flex-wrap: wrap;
 }
