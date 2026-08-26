@@ -64,11 +64,14 @@ main {
 }
 
 #categorias {
-    display: flex;
-    flex-wrap: wrap;        /* Permite que os artigos quebrem para a próxima linha */
-    gap: 20px;              /* Espaço entre os artigos */
-    justify-content: center; /* Centraliza os artigos horizontalmente */
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Três colunas de largura igual */
+    grid-template-areas:
+    /*grid-template-rows: auto;   /* Altura explícita das linhas */
+    grid-template-rows: minmax(40px, auto); /* No mínimo 180px, cresce se o conteúdo pedir */
+    gap: 24px;                          /* Espaço entre linhas e colunas */
+    row-gap: 32px;                      /* Só entre linhas */
+    column-gap: 16px;                   /* Só entre colunas */
 }
 
 #categorias article {
