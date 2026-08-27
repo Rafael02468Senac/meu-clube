@@ -1,0 +1,338 @@
+/* ============================================================
+   OPORTUNI — folha de estilo do projeto
+   UC15 · Técnico em Informática · Senac-RS
+
+   Cada bloco está marcado com o encontro em que nasceu:
+   [E5] CSS base e box model
+   [E6] Flexbox
+   [E7] CSS Grid  ← o que entra HOJE
+
+   Paleta da marca:
+   Azul   #1a5fb4  confiança
+   Laranja #ff8904  energia / oportunidade
+   Escuro #172a45  texto e rodapé
+   ============================================================ */
+
+
+/* ============ [E5] RESET ============
+   Zera as margens que o navegador coloca sozinho.
+   border-box faz padding e border entrarem na conta da largura. */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ============ [E5] CORPO ============ */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    color: #172a45;
+    line-height: 1.6;
+}
+
+/* Imagens nunca estouram o container */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.hero-img{
+    min-width: 500px;
+}
+
+/* ============ CABEÇALHO ============
+   [E5] cor e padding · [E6] flex para empilhar logo e menu com controle */
+header {
+    background-color: white;
+    color: #172a45;
+
+    /* [E6] FLEXBOX em coluna: logo em cima, menu embaixo, tudo centrado */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 24px;
+}
+
+.logo {
+    max-width: 200px;
+}
+
+/* [E6] Menu horizontal com espaçamento controlado */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;         /* no celular, os links quebram de linha */
+}
+
+nav a {
+    color: #172a45;
+    text-decoration: none;   /* [E5] remove o sublinhado */
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ff8904;          /* [E5] o primeiro hover da turma */
+}
+
+
+/* ============ [E5] SEÇÕES ============ */
+section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;          /* centraliza o bloco na página */
+}
+
+h2 {
+    color: #1a5fb4;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+
+/* ============ HERO ============ */
+#hero {
+    text-align: center;
+}
+
+#hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+.subtitulo {
+    font-size: 1.2rem;
+    color: #1a5fb4;
+    margin-bottom: 24px;
+}
+
+/* [E5] Link com cara de botão */
+.botao,
+button {
+    display: inline-block;
+    background-color: #ff8904;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao:hover,
+button:hover {
+    background-color: #e07800;
+}
+
+
+/* ============ [E6] CATEGORIAS — FLEXBOX ============
+   Fica em Flexbox de propósito: são poucos itens numa fila só.
+   É o caso clássico de UMA dimensão. */
+#categorias {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+/* h2 é filho do flex container: ocupa a largura toda sozinho */
+#categorias h2 {
+    flex-basis: 100%;
+}
+
+#categorias article {
+    flex: 1;                 /* divide o espaço em partes iguais */
+    min-width: 250px;        /* não encolhe além disso */
+    max-width: 320px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+
+/* ============ [E7] GALERIA — CSS GRID ============
+   Aqui é o oposto do bloco acima: seis itens em DUAS dimensões,
+   alinhados em linha E em coluna. Trabalho de Grid. */
+
+/* --- Passo 1 da aula: grade fixa (comentado, serve para mostrar a evolução)
+.grade-galeria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+--- */
+
+/* --- Passo 2: a virada responsiva.
+   Leia como frase: "crie quantas colunas couberem, cada uma com
+   pelo menos 250px, dividindo o espaço restante igualmente".
+   Nenhuma media query envolvida. */
+.grade-galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    grid-auto-rows: minmax(140px, auto);  /* linhas criadas pelo Grid */
+}
+
+.card-op {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-top: 4px solid #1a5fb4;
+
+    /* [E6 dentro do E7] Cada card é um Flexbox por dentro:
+       o conteúdo sobe, a etiqueta desce para a base. */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card-op h3 {
+    color: #172a45;
+}
+
+/* [E7] O destaque ocupa DUAS colunas — os outros se reorganizam sozinhos */
+.destaque {
+    grid-column: span 2;
+    border-top: 4px solid #ff8904;
+    background-color: #fff8f0;
+}
+
+.etiqueta {
+    margin-top: auto;        /* empurra a etiqueta para o fim do card */
+    align-self: flex-start;
+    background-color: #ff8904;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+
+/* ============ [E6] DEPOIMENTOS — FLEXBOX ============ */
+#depoimentos {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+#depoimentos h2 {
+    flex-basis: 100%;
+}
+
+#depoimentos article {
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    background-color: white;
+    border-left: 4px solid #ff8904;   /* detalhe laranja da marca */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+blockquote {
+    font-style: italic;
+}
+
+.autor {
+    margin-top: 12px;
+    font-weight: bold;
+    color: #1a5fb4;
+}
+
+
+/* ============ [E7] FORMULÁRIO — GRID de uma coluna ============
+   Grid não serve só para grade larga: uma coluna com gap
+   resolve o espaçamento do formulário inteiro sem margin em cada campo. */
+form {
+    display: grid;
+    gap: 12px;
+    max-width: 520px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;    /* herda a fonte do body */
+    font-size: 1rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid #1a5fb4;
+}
+
+form button {
+    justify-self: start;     /* o botão não estica a coluna toda */
+}
+
+
+/* ============ [E7] RODAPÉ — GRID em colunas ============ */
+footer {
+    background-color: #172a45;
+    color: white;
+    padding: 40px 20px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+}
+
+.col-rodape h4 {
+    color: #ff8904;
+    margin-bottom: 8px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ff8904;
+}
+
+.links-rodape {
+    list-style: none;
+}
+
+/* [E6] Redes sociais na horizontal: Flexbox DENTRO de uma célula do Grid */
+.redes {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+/* [E7] Os créditos atravessam TODAS as colunas do rodapé.
+   1 / -1 significa "da primeira linha até a última". */
+.creditos {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 16px;
+}
